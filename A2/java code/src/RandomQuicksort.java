@@ -26,8 +26,6 @@ public class RandomQuicksort {
     }
 
     public int partition(int[] array, int l, int r) {
-//        Random random = new Random();
-//        int randomPartition = l + random.nextInt(r - l + 1);
         int partition = randomPartition(l, r);
 
         swap(array, r, partition);
