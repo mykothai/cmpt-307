@@ -1,5 +1,5 @@
 public class InsertionSort {
-    public int[] sort(int[] array) {
+    private void sort(int[] array) {
         int length = array.length;
 
         for (int i = 1; i < length; i++) {
@@ -9,16 +9,15 @@ public class InsertionSort {
                 j--;
             }
         }
-        return array;
     }
 
-    public void swap(int[] array, int i, int j) {
+    private void swap(int[] array, int i, int j) {
         int temp = array[i];
         array[i] = array[j];
         array[j] = temp;
     }
 
-    public void printArray(int[] array) {
+    private void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
         }

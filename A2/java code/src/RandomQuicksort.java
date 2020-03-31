@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Random;
 
 /**
  * Implement the algorithm Randomized-Quicksort discussed in class and the variant
@@ -11,7 +11,7 @@ public class RandomQuicksort {
 
     int swapCounter = 0; // global counter for run time analysis
 
-    public void randomizedQuicksort(int[] array, int l, int r) {
+    void randomizedQuicksort(int[] array, int l, int r) {
         if (l < r) {
             int partitionIndex = partition(array, l, r);
             randomizedQuicksort(array, l, partitionIndex - 1);
@@ -19,13 +19,13 @@ public class RandomQuicksort {
         }
     }
 
-    public int randomPartition(int l, int r) {
+    private int randomPartition(int l, int r) {
         Random random = new Random();
         int randomPartition = l + random.nextInt(r - l + 1);
         return randomPartition;
     }
 
-    public int partition(int[] array, int l, int r) {
+    private int partition(int[] array, int l, int r) {
         int partition = randomPartition(l, r);
 
         swap(array, r, partition);
@@ -45,7 +45,7 @@ public class RandomQuicksort {
         return i + 1;
     }
 
-    public void swap(int[] array, int i, int j) {
+    private void swap(int[] array, int i, int j) {
         swapCounter++;
         int temp = array[i];
         array[i] = array[j];
@@ -73,6 +73,7 @@ public class RandomQuicksort {
         startTime = System.nanoTime();
         randomQuicksort.randomizedQuicksort(array, 0, array.length - 1);
         endTime = System.nanoTime();
+
         System.out.println("-----Number of swaps: " + randomQuicksort.swapCounter);
         System.out.println("-----Execution time: " + String.format("%.6f",(float)(endTime - startTime)/1000000) + " ms\n");
     }

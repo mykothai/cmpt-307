@@ -7,21 +7,7 @@ public class RandomQuicksortVariant {
 
     int swapCounter = 0; // global counter for run time analysis
 
-    public void randomizedQuicksort(int[] array, int l, int r, int k) {
-
-//        if (l < r) {
-//            int partitionIndex = randomPartition(array, l, r);
-//
-//            if (partitionIndex - l >= k) { // swapped inequality
-//                randomizedQuicksort(array, l, partitionIndex - 1, k);
-//            }
-//
-//            if (r - partitionIndex >= k) { // swapped inequality
-//                randomizedQuicksort(array, partitionIndex + 1, r, k);
-//            }
-//        }
-//        insertionSort(array, l, r);
-
+    void randomizedQuicksort(int[] array, int l, int r, int k) {
         if (l < r) {
             if (r - l < k) {
                 insertionSort(array, l, r);
@@ -33,7 +19,7 @@ public class RandomQuicksortVariant {
         }
     }
 
-    public int randomPartition(int l, int r) {
+    private int randomPartition(int l, int r) {
         Random random = new Random();
         int randomPartition = l + random.nextInt(r - l + 1);
         return randomPartition;
@@ -59,7 +45,7 @@ public class RandomQuicksortVariant {
         return i + 1;
     }
 
-    void insertionSort(int[] array, int l, int r) {
+    private void insertionSort(int[] array, int l, int r) {
         int i, j, key;
 
         for (j = l + 1; j < r; j++) {
@@ -72,7 +58,7 @@ public class RandomQuicksortVariant {
         }
     }
 
-    public void swap(int[] array, int i, int j) {
+    private void swap(int[] array, int i, int j) {
         swapCounter++;
         int temp = array[i];
         array[i] = array[j];
@@ -117,7 +103,6 @@ public class RandomQuicksortVariant {
             System.out.println("-----VARIANT");
             System.out.println("-----Average # of swaps: " + randomQuicksortVariant.swapCounter / iterations);
             System.out.println("-----Average execution time: " + String.format("%.6f", (float) ((endTime - startTime)) / 1000000) + " ms\n");
-//            randomQuicksortVariant.printArray(array);
         }
     }
 }

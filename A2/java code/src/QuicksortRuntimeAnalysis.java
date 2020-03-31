@@ -1,10 +1,9 @@
-import java.text.DecimalFormat;
 import java.util.Random;
 
 public class QuicksortRuntimeAnalysis {
 
-    public static RandomQuicksort randomQuicksort = new RandomQuicksort();
-    public static RandomQuicksortVariant randomQuicksortVariant = new RandomQuicksortVariant();
+    private static RandomQuicksort randomQuicksort = new RandomQuicksort();
+    private static RandomQuicksortVariant randomQuicksortVariant = new RandomQuicksortVariant();
 
     public static void printArray(int[] array) {
         for (int i = 0; i < array.length; i++) {
@@ -40,7 +39,7 @@ public class QuicksortRuntimeAnalysis {
             startTime = System.nanoTime();
             randomQuicksort.randomizedQuicksort(array, 0, array.length - 1);
             endTime = System.nanoTime();
-//            printArray(array);
+
             System.out.println("-----Number of swaps: " + randomQuicksort.swapCounter);
             System.out.println("-----Execution time: " + String.format("%.6f", (float)(endTime - startTime) / 1000000) + " ms\n");
 
@@ -48,7 +47,7 @@ public class QuicksortRuntimeAnalysis {
             startTime = System.nanoTime();
             randomQuicksortVariant.randomizedQuicksort(array, 0, array.length - 1, k);
             endTime = System.nanoTime();
-//            printArray(array);
+
             System.out.println("-----Number of swaps: " + randomQuicksortVariant.swapCounter);
             System.out.println("-----Execution time: " + String.format("%.6f", (float)(endTime - startTime) / 1000000) + " ms\n");
         }

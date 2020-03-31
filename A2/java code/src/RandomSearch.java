@@ -1,26 +1,14 @@
 import java.util.Random;
 
 /**
- * CMPT 307 Assignment 2 - Textbook problem 5-1
- * Searching an unsorted array problem: Given an array of n elements which are not sorted
- * and a value x, nd the index i such that A[i] = x. A randomized algorithm Random-
- * Search for the problem is as follows: select a number i from f1; ::; ng independently
- * and uniformly; if A[i] = x then return i and terminate; otherwise repeat the above
- * process until the i with A[i] = x is found or A[i] 6= x for every i = 1; ::; n is concluded.
- *
- * (a) Write a pseudo-code for Random-Search.
- * (b) Assume there is exactly one i such that A[i] = x. What is the expected number of
- * checks of A[i] = x Random-Search performs before terminates.
- *
- * Answer:
- * The number of expected checks of A[i] = x is equal to the number of times a random number is generated divided by the
+ * Randomly searches an index i in the array for a target and
+ * Keeps track of whether an index has been searched.
  */
 public class RandomSearch {
 
     public int search(int target, int[] array) {
         int[] indexTrack = new int[array.length];
-        int counter = 0;    // checks of tracked array is full
-        int numberOfIterations = 0; // testing run time only
+        int counter = 0;    // checks if tracked array is full
 
         // get random number
         int max = array.length;
@@ -30,10 +18,7 @@ public class RandomSearch {
         int i = min + random.nextInt(max);
 
         while (counter < array.length) {
-            numberOfIterations++;   // testing only
-
             if (array[i] == target) {
-//                return numberOfIterations; // testing average run time, remove
                 return i;
             }
 
