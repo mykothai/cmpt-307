@@ -30,19 +30,17 @@ public class RandomSearch {
             i = min + random.nextInt(max);
         }
         return -1;
-//        return numberOfIterations; // run time testing for no matches
     }
 
     public static void main(String[] args) {
-        int iterations = 1000000;
-        int totalRunTime = 0;
         RandomSearch randomSearch = new RandomSearch();
         int[] array = {4, 8, 5, 7, 2, 0, 9, 6, 1, 3};
-        for (int i = 0; i < iterations; i++) { // loop is for testing run time
-            System.out.println(randomSearch.search(3, array));
-//            totalRunTime = totalRunTime + randomSearch.search(30, array); //testing run time
-        }
+        int index = randomSearch.search(0, array);
 
-//        System.out.println(totalRunTime/iterations); // testing run time
+        if (index == -1) {
+            System.out.println("Target not found.");
+        } else {
+            System.out.println("Target is at index " + index);
+        }
     }
 }
