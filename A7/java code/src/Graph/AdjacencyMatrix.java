@@ -1,3 +1,5 @@
+package Graph;
+
 public class AdjacencyMatrix {
     private int numberVertices;
     private int adjMatrix[][];

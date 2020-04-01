@@ -1,3 +1,5 @@
+import Graph.AdjacencyMatrix;
+
 public class PrimsMinimumSpanningTree {
 
     public PrimsMinimumSpanningTree() {}
