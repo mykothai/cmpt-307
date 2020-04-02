@@ -38,6 +38,24 @@ public class AdjacencyList {
         adjList[j].addFirst(edge);
     }
 
+    public void removeEdge(int i, int j) {
+        LinkedList<Edge> list = adjList[i];
+        for (Edge e : list) {
+            if (e.j == j) {
+                list.remove(e);
+                break;
+            }
+        }
+
+        list = adjList[j];
+        for (Edge e : list) {
+            if (e.j == i) {
+                list.remove(e);
+                break;
+            }
+        }
+    }
+
     public void printGraph() {
         System.out.println("===============");
         System.out.println("Adjacency List:");
@@ -57,5 +75,6 @@ public class AdjacencyList {
                 System.out.println("Vertex " + i + " is empty.");
             }
         }
+        System.out.println();
     }
 }
