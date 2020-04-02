@@ -40,5 +40,6 @@ public class AdjacencyMatrix {
             }
             System.out.println();
         }
+        System.out.println();
     }
 }
