@@ -1,5 +1,8 @@
 package Graph;
 
+/**
+ * Creates and modifies an adjacency matrix for a undirected graph.
+ */
 public class AdjacencyMatrix {
     private int numberVertices;
     private int adjMatrix[][];
