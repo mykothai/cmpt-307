@@ -56,6 +56,20 @@ public class AdjacencyList {
         }
     }
 
+    public boolean isEdge(int i, int j) {
+        if (j > adjList.length - 1) {
+            throw new IndexOutOfBoundsException("Vertex j = " + j + " does not exist.");
+        }
+
+        LinkedList<Edge> list = adjList[i];
+        for (Edge e : list) {
+            if (e.j == j) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void printGraph() {
         System.out.println("===============");
         System.out.println("Adjacency List:");
