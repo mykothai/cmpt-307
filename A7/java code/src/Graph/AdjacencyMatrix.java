@@ -31,7 +31,9 @@ public class AdjacencyMatrix {
     }
 
     public void printGraph() {
+        System.out.println("=================");
         System.out.println("Adjacency Matrix:");
+        System.out.println("=================");
         for (int i = 0; i < numberVertices; i++) {
             for (int j = 0; j < numberVertices; j++) {
                 System.out.print(adjMatrix[i][j] + "\t");
