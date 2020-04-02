@@ -11,8 +11,8 @@ public class Main {
         AdjacencyList adjList = new AdjacencyList(numberVertices);
 
         // run time analysis
-        long startTime = 0;
-        long endTime = 0;
+        long startTime;
+        long endTime;
 
         // Create the adjacency matrix
         adjMatrix.addEdge(0, 1, 4);
@@ -32,7 +32,7 @@ public class Main {
 
         adjMatrix.printGraph();
 
-        System.out.println("\n ----- Prim's MST with Adjacency Matrix -----\n");
+        System.out.println("----- Prim's MST with Adjacency Matrix -----\n");
         startTime = System.nanoTime();
 
         primMST.primsAdjacencyMatrix(adjMatrix);
@@ -58,7 +58,7 @@ public class Main {
 
         adjList.printGraph();
 
-        System.out.println("\n ----- Prim's MST with Adjacency List -----\n");
+        System.out.println("----- Prim's MST with Adjacency List -----\n");
         startTime = System.nanoTime();
 
         primMST.primsAdjacencyList(adjList);
