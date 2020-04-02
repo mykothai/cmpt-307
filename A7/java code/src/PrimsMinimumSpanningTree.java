@@ -1,10 +1,11 @@
+import Graph.AdjacencyList;
 import Graph.AdjacencyMatrix;
 
 public class PrimsMinimumSpanningTree {
 
     public PrimsMinimumSpanningTree() {}
 
-    public void primsAdjacencyList(AdjacencyMatrix graph) {
+    public void primsAdjacencyList(AdjacencyList graph) {
         if (graph == null) {
             throw new NullPointerException("Adjacency list is null.");
         }
