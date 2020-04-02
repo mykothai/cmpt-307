@@ -5,7 +5,7 @@ package Graph;
  */
 public class AdjacencyMatrix {
     private int numberVertices;
-    private int adjMatrix[][];
+    private int[][] adjMatrix;
 
     public AdjacencyMatrix(int numberVertices) {
         this.numberVertices = numberVertices;
