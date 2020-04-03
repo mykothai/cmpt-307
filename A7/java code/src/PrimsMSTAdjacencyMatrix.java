@@ -12,6 +12,12 @@ public class PrimsMSTAdjacencyMatrix {
         int index;
         int key;
         Vertex parent;
+
+        public Vertex(int index, int key, Vertex parent) {
+            this.index = index;
+            this.key = key;
+            this.parent = parent;
+        }
     }
 
     /**
@@ -35,10 +41,7 @@ public class PrimsMSTAdjacencyMatrix {
         ArrayList<Vertex> queue = new ArrayList<>();
 
         for (int i = 0; i < graph.getNumberVertices(); i++) {
-            GV[i] = new Vertex();
-            GV[i].key = inf;
-            GV[i].index = i;
-            GV[i].parent = null;
+            GV[i] = new Vertex(i, inf, null);
         }
 
         GV[root].key = 0;
