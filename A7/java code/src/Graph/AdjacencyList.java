@@ -91,4 +91,12 @@ public class AdjacencyList {
         }
         System.out.println();
     }
+
+    public int getNumberVertices() {
+        return this.numberVertices;
+    }
+
+    public LinkedList<Edge>[] getAdjacencyList() {
+        return adjList;
+    }
 }
