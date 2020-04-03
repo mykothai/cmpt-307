@@ -8,10 +8,10 @@ public class PrimsMSTAdjacencyMatrix {
 
     static final Integer inf = Integer.MAX_VALUE;
 
-    static class vertex {
+    static class Vertex {
         int index;
         int key;
-        vertex parent;
+        Vertex parent;
     }
 
     /**
@@ -30,12 +30,12 @@ public class PrimsMSTAdjacencyMatrix {
         // Subset of safe edges that make up the MST
         AdjacencyMatrix mstSet = new AdjacencyMatrix(graph.getNumberVertices());
         // Holds edges with the min. weight value
-        vertex[] GV = new vertex[graph.getNumberVertices()];
+        Vertex[] GV = new Vertex[graph.getNumberVertices()];
         // Holds vertices not in MST based on key value
-        ArrayList<vertex> queue = new ArrayList<>();
+        ArrayList<Vertex> queue = new ArrayList<>();
 
         for (int i = 0; i < graph.getNumberVertices(); i++) {
-            GV[i] = new vertex();
+            GV[i] = new Vertex();
             GV[i].key = inf;
             GV[i].index = i;
             GV[i].parent = null;
@@ -47,13 +47,13 @@ public class PrimsMSTAdjacencyMatrix {
             queue.add(GV[i]);
         }
 
-        vertex u;
+        Vertex u;
         while (!queue.isEmpty()) {
             u = listMin(queue);
             queue.remove(u);
 
-            for (vertex v : GV) {
-                // Updates key values for vertices adjacent to vertex u
+            for (Vertex v : GV) {
+                // Updates key values for vertices adjacent to Vertex u
                 if (adjMatrix[u.index][v.index] > 0) {
                     if (queue.contains(v) && adjMatrix[u.index][v.index] <= v.key) {
                         v.parent = u;
@@ -75,14 +75,14 @@ public class PrimsMSTAdjacencyMatrix {
     }
 
     /**
-     * Finds the vertex with the min. key value
+     * Finds the Vertex with the min. key value
      *
      * @param queue the list of vertices
-     * @return min the vertex with the min. key value
+     * @return min the Vertex with the min. key value
      */
-    private vertex listMin(ArrayList<vertex> queue) {
-        vertex min = queue.get(0);
-        for (PrimsMinimumSpanningTree.vertex vertex : queue) {
+    private Vertex listMin(ArrayList<Vertex> queue) {
+        Vertex min = queue.get(0);
+        for (Vertex vertex : queue) {
             if (vertex.key <= min.key) {
                 min = vertex;
             }
