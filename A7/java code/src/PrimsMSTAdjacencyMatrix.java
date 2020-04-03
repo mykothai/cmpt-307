@@ -4,7 +4,7 @@ import java.util.ArrayList;
 /**
  * Prim's Minimum Spanning Tree (MST) algorithm for graphs represented by an adjacency matrix.
  */
-public class PrimsMinimumSpanningTree {
+public class PrimsMSTAdjacencyMatrix {
 
     static final Integer inf = Integer.MAX_VALUE;
 
