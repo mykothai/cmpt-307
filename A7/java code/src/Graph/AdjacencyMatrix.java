@@ -42,4 +42,12 @@ public class AdjacencyMatrix {
         }
         System.out.println();
     }
+
+    public int getNumberVertices() {
+        return numberVertices;
+    }
+
+    public int[][] getAdjMatrix() {
+        return adjMatrix;
+    }
 }
