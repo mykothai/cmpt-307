@@ -9,14 +9,14 @@ public class AdjacencyList {
     private int numberVertices;
     private LinkedList<Edge>[] adjList;
 
-    static class Edge {
-        int i;
-        int j;
+    public static class Edge {
+        int src;
+        int dest;
         int weight;
 
-        Edge(int i, int j, int weight) {
-            this.i = i;
-            this.j = j;
+        Edge(int src, int dest, int weight) {
+            this.src = src;
+            this.dest = dest;
             this.weight = weight;
         }
     }
@@ -41,7 +41,7 @@ public class AdjacencyList {
     public void removeEdge(int i, int j) {
         LinkedList<Edge> list = adjList[i];
         for (Edge e : list) {
-            if (e.j == j) {
+            if (e.dest == j) {
                 list.remove(e);
                 break;
             }
@@ -49,7 +49,7 @@ public class AdjacencyList {
 
         list = adjList[j];
         for (Edge e : list) {
-            if (e.j == i) {
+            if (e.dest == i) {
                 list.remove(e);
                 break;
             }
@@ -63,7 +63,7 @@ public class AdjacencyList {
 
         LinkedList<Edge> list = adjList[i];
         for (Edge e : list) {
-            if (e.j == j) {
+            if (e.dest == j) {
                 return true;
             }
         }
@@ -81,7 +81,7 @@ public class AdjacencyList {
                 System.out.print("Vertex " + i + " links to: ");
 
                 for (Edge e : list) {
-                    System.out.print(e.j + " (weight: " + e.weight + ")\t");
+                    System.out.print(e.dest + " (weight: " + e.weight + ")\t");
                 }
 
                 System.out.println();
