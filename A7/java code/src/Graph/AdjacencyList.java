@@ -9,10 +9,10 @@ public class AdjacencyList {
     private int numberVertices;
     private LinkedList<Edge>[] adjList;
 
-    public static class Edge {
-        int src;
-        int dest;
-        int weight;
+    public class Edge {
+        public int src;
+        public int dest;
+        public int weight;
 
         Edge(int src, int dest, int weight) {
             this.src = src;
@@ -30,26 +30,26 @@ public class AdjacencyList {
         }
     }
 
-    public void addEdge(int i, int j, int weight) {
-        Edge edge = new Edge(i, j, weight);
-        adjList[i].addFirst(edge);
+    public void addEdge(int src, int dest, int weight) {
+        Edge edge = new Edge(src, dest, weight);
+        adjList[src].addFirst(edge);
 
-        edge = new Edge(j, i, weight);
-        adjList[j].addFirst(edge);
+        edge = new Edge(dest, src, weight);
+        adjList[dest].addFirst(edge);
     }
 
-    public void removeEdge(int i, int j) {
-        LinkedList<Edge> list = adjList[i];
+    public void removeEdge(int src, int dest) {
+        LinkedList<Edge> list = adjList[src];
         for (Edge e : list) {
-            if (e.dest == j) {
+            if (e.dest == dest) {
                 list.remove(e);
                 break;
             }
         }
 
-        list = adjList[j];
+        list = adjList[dest];
         for (Edge e : list) {
-            if (e.dest == i) {
+            if (e.dest == src) {
                 list.remove(e);
                 break;
             }
