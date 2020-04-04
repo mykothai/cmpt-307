@@ -62,7 +62,6 @@ public class PrimsMSTAdjacencyMatrix {
         Vertex u;
         while (!queue.isEmpty()) {
             u = queue.poll();
-            queue.remove(u);
 
             for (Vertex v : GV) {
                 // Updates key values for vertices adjacent to Vertex u
@@ -77,14 +76,11 @@ public class PrimsMSTAdjacencyMatrix {
             }
         }
 
-        int totalWeight = 0;
         // Add safe edges to A
         for (int i = 1; i < GV.length; i++) {
             mstSet.addEdge(i, GV[i].parent.index, adjMatrix[i][GV[i].parent.index]);
-            totalWeight += adjMatrix[i][GV[i].parent.index];
         }
 
-        System.out.println("Weight of MST is " + totalWeight);
         return mstSet;
     }
 }
