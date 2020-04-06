@@ -1,9 +1,10 @@
 package Graph;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
- * Creates and modifies an adjacency list for a undirected graph.
+ * Creates and modifies an adjacency list for a undirected edge-weighted graph.
  */
 public class AdjacencyList {
     private int numberVertices;
@@ -90,6 +91,51 @@ public class AdjacencyList {
             }
         }
         System.out.println();
+    }
+
+    /**
+     * Creates an adjacency list representation of a connected edge-weighted graph
+     * with randomly added edges and weights
+     *
+     * @param vertices number of vertices
+     * @param edges number of edges
+     * @return adjacency list with n vertices and m edges
+     */
+    public AdjacencyList makeAdjacencyList(int vertices, int edges) {
+        AdjacencyList adjList = new AdjacencyList(vertices);
+        Random random = new Random();
+
+        int weightMax = vertices/2;
+        int min = 0;
+        int weight;
+        int randomSrc;
+        int randomDest;
+
+        // create connected graph
+        for (int i = 0; i < vertices; i++) {
+            weight = min + random.nextInt(weightMax);
+            // Make an edge from last element to first element
+            if (i == vertices - 1) {
+                adjList.addEdge(vertices - 1, 0, weight);
+            } else {
+                adjList.addEdge(i, i + 1, weight);
+            }
+        }
+
+        edges = edges - vertices;
+        while (edges > 0) {
+            weight = min + random.nextInt(weightMax);
+            randomSrc = min + random.nextInt(vertices);
+            randomDest = min + random.nextInt(vertices);
+
+            // Create edges if one does not already exist
+            if (!adjList.isEdge(randomSrc, randomDest) && randomSrc != randomDest) {
+                adjList.addEdge(randomSrc, randomDest, weight);
+                edges--;
+            }
+        }
+
+        return adjList;
     }
 
     public int getNumberVertices() {
