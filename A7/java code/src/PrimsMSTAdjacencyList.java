@@ -69,7 +69,9 @@ public class PrimsMSTAdjacencyList {
 
         // Add safe edges to A
         for (int i = 1; i < GV.length; i++) {
-            mstSet.addEdge(i, GV[i].parent.index, GV[i].key);
+            if (GV[i] != null) {
+                mstSet.addEdge(i, GV[i].parent.index, GV[i].key);
+            }
         }
 
         return mstSet;
