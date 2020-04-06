@@ -1,7 +1,9 @@
 package Graph;
 
+import java.util.Random;
+
 /**
- * Creates and modifies an adjacency matrix for a undirected graph.
+ * Creates and modifies an adjacency matrix for a undirected edge-weighted graph.
  */
 public class AdjacencyMatrix {
     private int numberVertices;
@@ -41,6 +43,51 @@ public class AdjacencyMatrix {
             System.out.println();
         }
         System.out.println();
+    }
+
+    /**
+     * Creates an adjacency matrix representation of a connected edge-weighted graph
+     * with randomly added edges and weights
+     *
+     * @param vertices number of vertices
+     * @param edges number of edges
+     * @return adjacency matrix with n vertices and m edges
+     */
+    public AdjacencyMatrix makeAdjacencyMatrix(int vertices, int edges) {
+        AdjacencyMatrix adjMatrix = new AdjacencyMatrix(vertices);
+        Random random = new Random();
+
+        int weightMax = vertices/2;
+        int min = 0;
+        int weight;
+        int randomSrc;
+        int randomDest;
+
+        // Create connected graph
+        for (int i = 0; i < vertices; i++) {
+            weight = min + random.nextInt(weightMax);
+            // Make an edge from last element to first element
+            if (i == vertices - 1) {
+                adjMatrix.addEdge(vertices - 1, 0, weight);
+            } else {
+                adjMatrix.addEdge(i, i + 1, weight);
+            }
+        }
+
+        edges = edges - vertices;
+        while (edges > 0) {
+            weight = min + random.nextInt(weightMax);
+            randomSrc = min + random.nextInt(vertices);
+            randomDest = min + random.nextInt(vertices);
+
+            // Create edges if one does not already exist
+            if (adjMatrix.getAdjMatrix()[randomSrc][randomDest] == 0 && randomSrc != randomDest) {
+                adjMatrix.addEdge(randomSrc, randomDest, weight);
+                edges--;
+            }
+        }
+
+        return adjMatrix;
     }
 
     public int getNumberVertices() {
