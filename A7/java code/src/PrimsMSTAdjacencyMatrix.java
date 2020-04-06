@@ -78,7 +78,9 @@ public class PrimsMSTAdjacencyMatrix {
 
         // Add safe edges to A
         for (int i = 1; i < GV.length; i++) {
-            mstSet.addEdge(i, GV[i].parent.index, adjMatrix[i][GV[i].parent.index]);
+            if (GV[i] != null) {
+                mstSet.addEdge(i, GV[i].parent.index, adjMatrix[i][GV[i].parent.index]);
+            }
         }
 
         return mstSet;
