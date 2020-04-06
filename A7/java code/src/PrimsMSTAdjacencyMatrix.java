@@ -38,7 +38,7 @@ public class PrimsMSTAdjacencyMatrix {
         AdjacencyMatrix mstSet = new AdjacencyMatrix(graph.getNumberVertices());
         // Holds edges with the min. weight value
         Vertex[] GV = new Vertex[graph.getNumberVertices()];
-        // Holds vertices not in MST based on key value
+
         PriorityQueue<Vertex> queue = new PriorityQueue<>(graph.getNumberVertices(), new Comparator<>() {
             @Override
             public int compare(Vertex v1, Vertex v2) {
