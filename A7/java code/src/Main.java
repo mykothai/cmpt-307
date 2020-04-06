@@ -1,7 +1,6 @@
 import Graph.AdjacencyList;
 import Graph.AdjacencyMatrix;
-
-import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
@@ -9,130 +8,72 @@ public class Main {
 
         PrimsMSTAdjacencyMatrix primsMSTAdjacencyMatrix = new PrimsMSTAdjacencyMatrix();
         PrimsMSTAdjacencyList primsMSTAdjacencyList = new PrimsMSTAdjacencyList();
-        AdjacencyMatrix adjMatrix;
-        AdjacencyList adjList;
 
         long startTime;
         long endTime;
-
-        int vertices = 400;
-        int edges = 79800;
-
-        int iterator = 100;
         long totalTime = 0;
+        int vertices;
+        int edges;
+        int iterator = 1000; // number of iterations for prims
 
-        System.out.println("----- Prim's MST with Adjacency Matrix -----");
-        System.out.println("n = " + vertices + ", m = " + edges);
-
-        for (int i = 0; i < iterator; i++) {
-            adjMatrix = makeAdjacencyMatrix(vertices, edges);
-
-            startTime = System.nanoTime();
-            primsMSTAdjacencyMatrix.primsMST(adjMatrix, 0);
-
-            endTime = System.nanoTime();
-            totalTime += (endTime - startTime);
-        }
-
-        System.out.println("Average Execution time: " + String.format("%.6f", + (float)((totalTime) / iterator) / 1000000) + " ms.");
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the number of vertices: ");
+        vertices = input.nextInt();
+        System.out.print("Enter the number of edges: ");
+        edges = input.nextInt();
         System.out.println();
 
         System.out.println("----- Prim's MST with Adjacency List -----");
         System.out.println("n = " + vertices + ", m = " + edges);
+        AdjacencyList adjList = new AdjacencyList(vertices);
 
         for (int i = 0; i < iterator; i++) {
-            adjList = makeAdjacencyList(vertices, edges);
+            adjList = adjList.makeAdjacencyList(vertices, edges);
+
             startTime = System.nanoTime();
-
             primsMSTAdjacencyList.primsMST(adjList, 0);
-
             endTime = System.nanoTime();
             totalTime += (endTime - startTime);
         }
 
-        System.out.println("Average Execution time: " + String.format("%.6f", + (float)((totalTime) / iterator) / 1000000) + " ms.");
-    }
+        System.out.println(
+                "Average Execution time: " +
+                        String.format("%.6f", + (float) ((totalTime) / iterator) / 1000000) +
+                        " ms."
+        );
 
-    private static AdjacencyMatrix makeAdjacencyMatrix(int vertices, int edges) {
+        System.out.println();
+
+        System.out.println("----- Prim's MST with Adjacency Matrix -----");
+        System.out.println("n = " + vertices + ", m = " + edges);
         AdjacencyMatrix adjMatrix = new AdjacencyMatrix(vertices);
 
-        int weightMax = vertices/2;
-        int min = 0;
-        int weight;
-        int randomSrc;
-        int randomDest;
-        Random random = new Random();
+        for (int i = 0; i < iterator; i++) {
+            adjMatrix = adjMatrix.makeAdjacencyMatrix(vertices, edges);
 
-        // create connected graph
-        for (int i = 0; i < vertices; i++) {
-            weight = min + random.nextInt(weightMax);
-            // make an edge from last element to first element
-            if (i == vertices - 1) {
-                adjMatrix.addEdge(vertices - 1, 0, weight);
-            } else {
-                adjMatrix.addEdge(i, i + 1, weight);
-            }
+            startTime = System.nanoTime();
+            primsMSTAdjacencyMatrix.primsMST(adjMatrix, 0);
+            endTime = System.nanoTime();
+            totalTime += (endTime - startTime);
         }
 
-        edges = edges - vertices;
-        while (edges > 0) {
-            weight = min + random.nextInt(weightMax);
-            randomSrc = min + random.nextInt(vertices);
-            randomDest = min + random.nextInt(vertices);
-
-            if (
-                    adjMatrix.getAdjMatrix()[randomSrc][randomDest] == 0 &&
-                    randomSrc != randomDest
-            ) {
-                adjMatrix.addEdge(randomSrc, randomDest, weight);
-                edges--;
-            }
-        }
-
-        return adjMatrix;
-    }
-
-    private static AdjacencyList makeAdjacencyList(int vertices, int edges) {
-        AdjacencyList adjList = new AdjacencyList(vertices);
-
-        int weightMax = vertices/2;
-        int min = 0;
-        int weight;
-        int randomSrc;
-        int randomDest;
-        Random random = new Random();
-
-        // create connected graph
-        for (int i = 0; i < vertices; i++) {
-            weight = min + random.nextInt(weightMax);
-            // make an edge from last element to first element
-            if (i == vertices - 1) {
-                adjList.addEdge(vertices - 1, 0, weight);
-            } else {
-                adjList.addEdge(i, i + 1, weight);
-            }
-        }
-
-        edges = edges - vertices;
-        while (edges > 0) {
-            weight = min + random.nextInt(weightMax);
-            randomSrc = min + random.nextInt(vertices);
-            randomDest = min + random.nextInt(vertices);
-
-            if (
-                    !adjList.isEdge(randomSrc, randomDest) &&
-                    randomSrc != randomDest
-            ) {
-                adjList.addEdge(randomSrc, randomDest, weight);
-                edges--;
-            }
-        }
-
-        return adjList;
-    }
+        System.out.println(
+                "Average Execution time: " +
+                        String.format("%.6f", + (float) ((totalTime) / iterator) / 1000000) +
+                        " ms."
+        );
+     }
 
     /**
      * Method used as a test case for both Prim's algorithms
+     * on the following graph
+     *
+     *     (B)-8--(C)-7-(D)
+     *   4/ |   2/  \    | \9
+     * (A)  11 (I)   4  14  (E)
+     *   8\ | /7      \  | /10
+     *     (H)-1-(G)-2-(F)
+     *
      */
     private static void primsExample() {
         PrimsMSTAdjacencyMatrix primsMSTAdjacencyMatrix = new PrimsMSTAdjacencyMatrix();
@@ -167,7 +108,11 @@ public class Main {
         AdjacencyMatrix primsMSTMatrix = primsMSTAdjacencyMatrix.primsMST(adjMatrix, 0);
 
         endTime = System.nanoTime();
-        System.out.println("Execution time: " + String.format("%.6f", (float)(endTime - startTime) / 1000000) + " ms.");
+        System.out.println(
+                "Execution time: " +
+                        String.format("%.6f", (float) (endTime - startTime) / 1000000) +
+                        " ms."
+        );
 
         primsMSTMatrix.printGraph();
 
@@ -196,7 +141,11 @@ public class Main {
         AdjacencyList primsMSTList = primsMSTAdjacencyList.primsMST(adjList, 0);
 
         endTime = System.nanoTime();
-        System.out.println("Execution time: " + String.format("%.6f", (float)(endTime - startTime) / 1000000) + " ms.");
+        System.out.println(
+                "Execution time: " +
+                        String.format("%.6f", (float) (endTime - startTime) / 1000000) +
+                        " ms."
+        );
 
         primsMSTList.printGraph();
     }
