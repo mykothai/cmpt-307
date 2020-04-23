@@ -11,7 +11,7 @@ public class AdjacencyList {
     private LinkedList<Edge>[] adjList;
 
     public class Edge {
-        public int src;
+        int src;
         public int dest;
         public int weight;
 
